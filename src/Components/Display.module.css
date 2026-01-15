@@ -1,0 +1,95 @@
+.todorow {
+  
+  margin-bottom: 15px;
+  
+}
+
+.para {
+  font-size: 15px;
+  font-weight: 500;
+  color: #aaa;
+}
+
+.date {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.Delete {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 6px;
+}
+.butcont{
+    display: flex;
+    justify-content: center;
+    gap: 13px;
+}
+
+.Update{
+background-color: #56905b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 6px;
+}
+
+.Delete:hover {
+  background-color: #e63b3b;
+}
+.input {
+  width: 100%;
+  padding: 10px 12px;
+
+  background-color: #1f2023;
+  color: #fff;
+
+  border: 1px solid #3a3d42;
+  border-radius: 10px;
+
+  outline: none;
+}
+
+.button {
+  padding: 10px 18px;
+  border-radius: 99px;
+  border: none;
+
+  background-color: #ffffff;
+  color: #000;
+  font-weight: 600;
+  text-align: center;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: #dcdcdc;
+}
+
+/* responsive */
+@media (max-width: 600px) {
+  /* .todorow {
+    flex-direction: column;
+    gap: 10px;
+  } */
+
+
+  .button{
+  padding: 1px 10px;
+  border-radius: 0px;
+  border: none;
+
+  background-color: #ffffff;
+  color: #000;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  }
+
+}
