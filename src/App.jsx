@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { TodoContext } from "./Store/TodoContext";
 import "./App.css";
 import Container from "./Components/Container";
 import Input from "./Components/Input";
@@ -19,21 +20,18 @@ function App() {
       dudate: "4/10/2025",
     },
   ]);
-  const [inputval, setinputval] = useState("");
-  const [Tododate, Settododate] = useState("");
 
-  const additem = (e) => {
+  const additem = (inputval,Tododate) => {
     if(!inputval || !Tododate) return
-    Settodoitems([
+    Settodoitems((prev) =>[
       {
         id: Date.now(),
         name: inputval,
         dudate: Tododate,
       },
-      ...todoitems,
+      ...prev,
     ]);
-    setinputval("")
-    Settododate("")
+
     
   };
 
@@ -41,9 +39,6 @@ function App() {
    Settodoitems(prev => prev.filter((item)=> item.id !== id))
   }
 
-  
-  const [update_input,setUpdateval] = useState("")
-  const [update_date,setUpdatedate] = useState("")
 
   const [updateid,setupdatecomp] = useState(null)
   // const updatecompid = (id) =>{
@@ -52,44 +47,34 @@ function App() {
 
   const updatecompid = (id) =>{
     setupdatecomp(prev=> prev === id ? null : id)
-    setUpdatedate("")
-    setUpdateval("")
+ 
   }
 
-  const updateitem = (id) => {
+  const updateitem = (id,update_input,update_date) => {
 
     if(!update_input || !update_date) return
     // Settodoitems(prev => prev.map(item => item.id === id ? {...item,name:inputval,dudate:Tododate} : item)) 
     Settodoitems(prev=> prev.map(item => item.id === id? {...item,name:update_input,dudate:update_date} :item))
-    setUpdateval("")
-    setUpdatedate("")
+ 
     setupdatecomp(null)
   }
 
   return (
     <>
+    <TodoContext.Provider value={{todoitems,
+      additem,
+      deleteitem,
+      updateitem,
+      updatecompid,
+      updateid
+               }}>
       <Container>
-        <Input additem={additem} 
-        val={setinputval} 
-        value={inputval}
-        
-        Date={Settododate}
-        valuedate={Tododate}
-        />
-        <Empty Todoitems={todoitems}></Empty>
-        <Display Todoitems={todoitems} 
-          deleteitem= {deleteitem}
-
-          updatecompid = {updatecompid}
-          updateid = {updateid}
-
-          update_input={setUpdateval}
-          update_date = {setUpdatedate}        
-          Updateitem = {updateitem}
-          valuefor_upInput={update_input}
-          valuefor_up_date={update_date}
-        />
+        <Input/>
+        <Empty ></Empty>
+        <Display/>
       </Container>
+
+      </TodoContext.Provider>
     </>
   );
 }

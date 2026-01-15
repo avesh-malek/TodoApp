@@ -1,10 +1,27 @@
 import styles from "./Display.module.css";
-import React from "react";
+import React, { useRef } from "react";
+import { TodoContext } from "../Store/TodoContext";
+import { useContext } from "react";
 
-const Display = ({ Todoitems, deleteitem, updatecompid, updateid ,update_input,update_date,Updateitem,valuefor_up_date,valuefor_upInput}) => {
+const Display = () => {
+
+  const {todoitems,updateitem,deleteitem,updatecompid,updateid} = useContext(TodoContext)
+
+  const updateinput = useRef()
+  const updatedate = useRef()
+
+  const Updateitemhandle = (id) => {
+
+    let input = updateinput.current.value
+    let date = updatedate.current.value
+    updateitem(id,input,date)
+
+    updateinput.current.value = ""  
+    updatedate.current.value = ""
+  }
   return (
     <div className="container text-center">
-      {Todoitems.map((item, index) => (
+      {todoitems.map((item, index) => (
         <React.Fragment key={item.id}>
         <div className={`row ${styles.todorow}`} >
           <div className="col">
@@ -35,18 +52,19 @@ const Display = ({ Todoitems, deleteitem, updatecompid, updateid ,update_input,u
 
             <div className={`row ${styles.todorow}`}>
               <div className="col">
-                  <input type="text" className={styles.input} onChange={(e) => update_input(e.target.value)} value={valuefor_upInput} />
+                  <input type="text" className={styles.input} 
+                  ref={updateinput}  />
               
               </div>
 
               <div className="col">
               
-                  <input type="date" className={styles.input} onChange={(e) =>update_date(e.target.value)} value={valuefor_up_date}/>
+                  <input type="date" className={styles.input} ref={updatedate} />
               
               </div>
 
               <div className={`col`}>
-                <button className={styles.button} onClick={()=>Updateitem(item.id)}>Add</button>
+                <button className={styles.button} onClick={()=>Updateitemhandle(item.id)}>Add</button>
               </div>
             </div>
           )}
