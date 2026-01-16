@@ -85,13 +85,3 @@ It centralizes all todo operations into a **single reducer function**, making th
 ```js
 const [todoitems, dispatch] = useReducer(TodoitemReducer, initialTodos);
 
-
----
-
-If you want next, I can:
-- Convert this to **Redux Toolkit**
-- Add **LocalStorage persistence**
-- Refactor into a **custom hook (`useTodo`)**
-- Review this project like a **senior code reviewer**
-
-Just tell me 👍
