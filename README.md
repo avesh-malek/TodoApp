@@ -1,18 +1,19 @@
 # 📝 Todo App (React)
 
-A simple and well-structured **Todo List application** built using **React**.  
-This project focuses on practicing core React concepts such as **Context API, Hooks, Forms, and useRef** while maintaining clean and readable code.
+A well-structured **Todo List application** built using **React**.  
+This project focuses on learning **advanced React state management** using **Context API + useReducer**, along with forms, refs, and clean component architecture.
 
 ---
 
 ## 🚀 Features
 
-- Add todo items with a due date
-- Delete existing todo items
-- Update todo name and due date
-- Shows a message when the todo list is empty
-- Responsive layout using Bootstrap
-- Component-based clean architecture
+- ➕ Add todo items with a due date
+- 🗑️ Delete existing todo items
+- ✏️ Update todo name and due date
+- 📭 Shows a message when the todo list is empty
+- 🌍 Global state management (no prop drilling)
+- 📱 Responsive UI using Bootstrap
+- 🧩 Clean, modular component structure
 
 ---
 
@@ -20,35 +21,77 @@ This project focuses on practicing core React concepts such as **Context API, Ho
 
 - React
 - JavaScript (ES6+)
-- React Hooks (`useState`, `useContext`, `useRef`)
+- React Hooks
+  - `useReducer`
+  - `useState`
+  - `useContext`
+  - `useRef`
 - Context API
 - CSS Modules
 - Bootstrap
 
 ---
 
-## 📚 React Concepts Used
+## 📂 Project Structure
 
-### 1. Context API
-The Context API is used for **global state management**.  
-It helps avoid prop drilling by providing shared data and functions to all components.
+src/
+│
+├── Components/
+│ ├── Container.jsx
+│ ├── Input.jsx
+│ ├── Display.jsx
+│ └── Empty.jsx
+│
+├── Store/
+│ └── TodoContext.jsx
+│
+├── App.jsx
+└── main.jsx
 
-**Context provides:**
-- Todo list data
-- Add todo function
-- Delete todo function
-- Update todo function
-- Update mode tracking
 
 ---
 
-### 2. useState Hook
-Used for managing component state such as:
-- Todo list items
-- Currently selected todo for updating
+## 🧠 React Concepts Used
+
+### 1️⃣ Context API
+Used for **global state sharing** across components.
+
+Instead of passing props deeply, the todo state and actions are provided via a context provider.
+
+**Context provides:**
+- `todoitems`
+- `additem`
+- `deleteitem`
+- `updateitem`
+- `updatecompid`
+- `updateid`
+
+---
+
+### 2️⃣ useReducer (Core Logic)
+
+`useReducer` is used instead of `useState` to manage complex state updates.
+
+It centralizes all todo operations into a **single reducer function**, making the logic:
+- Predictable
+- Scalable
+- Easier to debug
+
+#### Reducer Actions:
+- `ADD_item`
+- `Delete_item`
+- `Update_item`
 
 ```js
-const [todoitems, setTodoitems] = useState([]);
-const [updateid, setUpdateId] = useState(null);
+const [todoitems, dispatch] = useReducer(TodoitemReducer, initialTodos);
 
 
+---
+
+If you want next, I can:
+- Convert this to **Redux Toolkit**
+- Add **LocalStorage persistence**
+- Refactor into a **custom hook (`useTodo`)**
+- Review this project like a **senior code reviewer**
+
+Just tell me 👍
